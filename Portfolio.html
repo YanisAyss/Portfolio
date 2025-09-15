@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Yanis AFKOUR</title>
+    <link rel="icon" href="logo/Y.jpeg" type="image/jpeg">
+    <style>
+        /* Importer la police LEMONMILK */
+        @font-face {
+            font-family: 'LemonMilk';
+            src: url('fonts/LEMONMILK-BoldItalic.otf') format('opentype');
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        /* Appliquer la police globalement */
+        body {
+            font-family: 'LemonMilk', Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: transparent;
+            color: #333;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        header h1 {
+            font-family: 'LemonMilk', Arial, sans-serif;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .tab {
+            padding: 1rem 2rem;
+            cursor: pointer;
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px 5px 0 0;
+            margin-right: 5px;
+            transition: background 0.3s ease, transform 0.3s ease;
+            font-family: 'LemonMilk', Arial, sans-serif;
+        }
+
+        .tab:hover {
+            background: #0056b3;
+            transform: translateY(-3px);
+        }
+
+        .tab.active {
+            background: #0056b3;
+        }
+
+        .tab-content {
+            margin-top: 5px; /* Ajout d'un espace de 10px */
+            display: none;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 0 5px 5px 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease-in-out;
+            font-family: 'LemonMilk', Arial, sans-serif;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: #007BFF;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease, transform 0.3s ease;
+            font-family: 'LemonMilk', Arial, sans-serif;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+        
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #fff;
+            margin-top: 2rem;
+            position: relative;
+            font-family: 'LemonMilk', Arial, sans-serif;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: linear-gradient(135deg, #007BFF, transparent);
+            z-index: -1;
+            clip-path: polygon(0 0, 100% 100%, 0 100%);
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Formes décoratives */
+        .shape {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.8;
+        }
+
+        .shape.triangle {
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 150px solid #fed6e3;
+            bottom: 10%;
+            right: 10%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .shape.circle {
+            width: 150px;
+            height: 150px;
+            background: #fff;
+            border-radius: 50%;
+            top: 20px; /* Positionner en haut */
+            left: 20px; /* Positionner à gauche */
+            animation: float 6s ease-in-out infinite;
+            background-image: url('PP.jpg'); /* Ajouter la photo */
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Styles des bulles */
+        .project-bubble {
+            width: 200px;
+            height: 200px;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: bounce 2s infinite;
+        }
+
+        /* Effet au survol */
+        .project-bubble:hover {
+            transform: scale(1.1); /* Zoom */
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée */
+        }
+
+        /* Animation de rebond */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .language-logo {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .tab-content.active .language-logo {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .passe-temps-item {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .passe-temps-item:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .passe-temps-item:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .passe-temps-item:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .passe-temps-item:nth-child(4) {
+            animation-delay: 0.8s;
+        }
+
+        .passe-temps-item:nth-child(5) {
+            animation-delay: 1s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .experience-item {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .experience-item:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .experience-item:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .experience-item:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .experience-item:nth-child(4) {
+            animation-delay: 0.8s;
+        }
+
+        #passe-temps ul {
+            display: flex;
+            flex-direction: column; /* Affiche les éléments en colonne */
+            gap: 1.5rem; /* Espacement vertical entre les éléments */
+            align-items: flex-start; /* Aligne les éléments sur la gauche */
+            padding-left: 2rem; /* Ajoute un espace à gauche pour éviter qu'ils soient collés */
+        }
+
+        .passe-temps-item {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Espacement entre l'icône et le texte */
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .passe-temps-item:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .passe-temps-item:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .passe-temps-item:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .passe-temps-item:nth-child(4) {
+            animation-delay: 0.8s;
+        }
+
+        .passe-temps-item:nth-child(5) {
+            animation-delay: 1s;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Portfolio - Yanis AFKOUR</h1>
+        <p>Étudiant en BTS SIO en alternance</p>
+        <!-- Supprimer la bulle bleue -->
+        <div class="shape circle"></div>
+    </header>
+
+    <!-- Onglets -->
+    <div class="tabs">
+        <button class="tab active" data-tab="about">À propos</button>
+        <button class="tab" data-tab="experience">Expérience</button>
+        <button class="tab" data-tab="skills">Langages</button>
+        <button class="tab" data-tab="projects">Projets</button>
+        <button class="tab" data-tab="competences">Compétences</button>
+        <button class="tab" data-tab="passe-temps">Passe Temps</button>
+    </div>
+
+    <!-- Contenu des onglets -->
+    <div id="about" class="tab-content active">
+        <h2>À propos de moi</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; background: #f9f9f9; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            <!-- Carte 1 -->
+            <div style="flex: 1 1 300px; background: #fff; padding: 1.5rem; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); text-align: center;">
+                <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 0.5rem;">Yanis AFKOUR</p>
+                <p style="font-size: 1rem; color: #555;">18 ans</p>
+                <p style="font-size: 1rem; color: #555;">Permis B</p>
+
+            </div>
+
+            <!-- Carte 2 -->
+            <div style="flex: 1 1 300px; background: #fff; padding: 1.5rem; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); text-align: center;">
+                <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 0.5rem;">Étudiant</p>
+                <p style="font-size: 1rem; color: #555;">BTS SIO à DBS, Nîmes</p>
+            </div>
+
+            <!-- Carte 3 -->
+            <div style="flex: 1 1 300px; background: #fff; padding: 1.5rem; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); text-align: center;">
+                <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 0.5rem;">Alternance</p>
+                <p style="font-size: 1rem; color: #555;">DigitHall, Saint-Rémy-de-Provence</p>
+            </div>
+
+            <!-- Carte 4 : Tâches -->
+            <div style="flex: 1 1 300px; background: #fff; padding: 1.5rem; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); text-align: center;">
+                <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem;">Tâches</p>
+                <ul style="list-style: none; padding: 0; margin: 0; font-size: 1rem; color: #555;">
+                    <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <img src="images/technicien.png" alt="Technicien Icon" style="width: 20px; height: 20px;">
+                        Technicien maintenance réseaux et télécoms
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 10px;">
+                        <img src="images/developpeur.png" alt="Développeur Icon" style="width: 20px; height: 20px;">
+                        Développeur informatique
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section Contactez-moi -->
+        <h3 style="margin-top: 2rem; text-align: center;">Contactez-moi</h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; margin-top: 1rem; background: #f9f9f9; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            <!-- Email -->
+            <div style="flex: 1 1 300px; display: flex; align-items: center; gap: 10px; background: #fff; padding: 1rem; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                <img src="images/enveloppe.png" alt="Email Icon" style="width: 30px; height: 30px;">
+                <a href="mailto:yanisafkour5@gmail.com" style="font-size: 1rem; color: #007BFF; text-decoration: none;">yanisafkour5@gmail.com</a>
+            </div>
+
+            <!-- Téléphone -->
+            <div style="flex: 1 1 300px; display: flex; align-items: center; gap: 10px; background: #fff; padding: 1rem; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                <img src="images/téléphone.png" alt="Phone Icon" style="width: 30px; height: 30px;">
+                <p style="font-size: 1rem; color: #555; margin: 0;">0661048131</p>
+            </div>
+
+            <!-- Localisation -->
+            <div style="flex: 1 1 300px; display: flex; align-items: center; gap: 10px; background: #fff; padding: 1rem; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                <img src="images/localisation.png" alt="Location Icon" style="width: 30px; height: 30px;">
+                <p style="font-size: 1rem; color: #555; margin: 0;">Nîmes, France</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ajouter la bulle blanche avec la photo -->
+    <div class="shape circle"></div>
+
+    <div id="experience" class="tab-content">
+        <h2>Expérience Professionnelle</h2>
+        <ul style="list-style: none; padding: 0; font-size: 1.2rem; color: #555;">
+            <li class="experience-item" style="margin-bottom: 10px;">Stage 3e NEOTECH INFORMATIQUE (2020) à Nîmes</li>
+            <li class="experience-item" style="margin-bottom: 10px;">Lycée Dhuoda STI2D (septembre 2021 - juin 2024)</li>
+            <li class="experience-item" style="margin-bottom: 10px;">Bac mention bien</li>
+            <li class="experience-item">BTS SIO DBS en alternance chez DigitHall à Saint-Rémy-de-Provence</li>
+        </ul>
+    </div>
+
+    <div id="skills" class="tab-content">
+        <h2>Langages vus</h2>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 10rem; flex-wrap: wrap;">
+            <img src="images/html-logo.png" alt="HTML Logo" class="language-logo" style="width: 100px; height: 100px;">
+            <img src="images/php-logo.png" alt="PHP Logo" class="language-logo" style="width: 100px; height: 100px;">
+            <img src="images/css-logo.png" alt="CSS Logo" class="language-logo" style="width: 100px; height: 100px;">
+            <img src="images/javascript-logo.png" alt="JavaScript Logo" class="language-logo" style="width: 100px; height: 100px;">
+        </div>
+    </div>
+
+    <div id="projects" class="tab-content">
+        <h2>Projets réalisés</h2>
+        <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;">
+            <!-- Bulle 1 -->
+            <a href="https://dbs4maths.adkynet.eu/index.php" target="_blank" style="text-decoration: none;">
+                <div class="project-bubble" style="background: #007BFF;">
+                    Projet DBS4Maths<br>Jeux et outils mathématiques
+                </div>
+            </a>
+
+            <!-- Bulle 2 -->
+            <a href="http://localhost/Site%20DigitalNetwork/" target="_blank" style="text-decoration: none;">
+                <div class="project-bubble" style="background: #28A745;">
+                    Digital Network<br>
+                </div>
+            </a>
+
+            <!-- Bulle 3 -->
+            <a href="http://localhost/API/atlas-api.php" style="text-decoration: none;">
+                <div class="project-bubble" style="background: #FFC107;">
+                    API DIGIT<br>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div id="competences" class="tab-content">
+        <h2>Compétences</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
+
+            <!-- Compétences Techniques -->
+            <div style="flex: 1 1 350px; background: #f9f9f9; padding: 1.5rem; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.08);">
+                <h3 style="display: flex; align-items: center; gap: 10px; color: #007BFF;">
+                    <span style="font-size: 1.5rem;">🖥️</span> Compétences Techniques
+                </h3>
+                <ul style="list-style: none; padding: 0; margin: 1rem 0 0 0; color: #555; font-size: 1.1rem;">
+                    <li style="margin-bottom: 10px;">
+                        <strong>Base de données :</strong> MySQL, SQL Server (création de tables, requêtes, jointures…)
+                    </li>
+                    <li style="margin-bottom: 10px;">
+                        <strong>Développement d’applications :</strong> Conception d'application sous Visual Studio Code
+                    </li>
+                    <li style="margin-bottom: 10px;">
+                        <strong>Outils et environnements :</strong> Visual Studio Code, XAMPP, PhpMyAdmin, Notepad++, SQL SERVER
+                    </li>
+                    <li>
+                        <strong>Maintenance & Réseaux :</strong> Configuration de postes, dépannage à distance, déploiement de matériel réseau en entreprise
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Soft Skills -->
+            <div style="flex: 1 1 350px; background: #f9f9f9; padding: 1.5rem; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.08);">
+                <h3 style="display: flex; align-items: center; gap: 10px; color: #28A745;">
+                    <span style="font-size: 1.5rem;">🧠</span> Soft Skills
+                </h3>
+                <ul style="list-style: none; padding: 0; margin: 1rem 0 0 0; color: #555; font-size: 1.1rem;">
+                    <li style="margin-bottom: 10px;">Esprit d’analyse et de logique</li>
+                    <li style="margin-bottom: 10px;">Travail en équipe</li>
+                    <li style="margin-bottom: 10px;">Rigueur et autonomie</li>
+                    <li style="margin-bottom: 10px;">Capacité d’adaptation</li>
+                    <li>Communication avec les clients/utilisateurs</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="passe-temps" class="tab-content">
+        <h2>Passe Temps</h2>
+        <ul style="list-style: none; padding: 0; font-size: 1.2rem; color: #555; display: flex; flex-direction: column; gap: 1.5rem; align-items: flex-start;">
+            <li class="passe-temps-item" style="display: flex; align-items: center; gap: 10px;">
+                <img src="images/voyage.png" alt="Voyager Icon" style="width: 30px; height: 30px;">
+                Voyager
+            </li>
+            <li class="passe-temps-item" style="display: flex; align-items: center; gap: 10px;">
+                <img src="images/foot.png" alt="Football Icon" style="width: 30px; height: 30px;">
+                Sport (Football)
+            </li>
+            <li class="passe-temps-item" style="display: flex; align-items: center; gap: 10px;">
+                <img src="images/jeu.png" alt="Jeux Vidéo Icon" style="width: 30px; height: 30px;">
+                Jeux Vidéo
+            </li>
+            <li class="passe-temps-item" style="display: flex; align-items: center; gap: 10px;">
+                <img src="images/info.png" alt="Informatique Icon" style="width: 30px; height: 30px;">
+                Informatique
+            </li>
+            <li class="passe-temps-item" style="display: flex; align-items: center; gap: 10px;">
+                <img src="images/montage.png" alt="Montage Vidéos Icon" style="width: 30px; height: 30px;">
+                Montage vidéos
+            </li>
+        </ul>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Yanis AFKOUR. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Gestion des onglets
+        const tabs = document.querySelectorAll('.tab');
+        const contents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
