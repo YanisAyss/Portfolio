@@ -389,6 +389,102 @@
             }
         }
 
+        /* Mobile uniquement : contenu vertical */
+        @media (max-width: 600px) {
+            body {
+                padding: 0;
+            }
+
+            header {
+                padding: 1.5rem 1rem;
+            }
+
+            .tabs {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 0 1rem;
+            }
+
+            .tab {
+                width: 100%;
+                margin-right: 0;
+                border-radius: 8px;
+            }
+
+            .tab-content {
+                padding: 1.25rem;
+            }
+
+            .project-bubble {
+                width: 160px;
+                height: 160px;
+                font-size: 0.9rem;
+            }
+
+            #skills .language-logo,
+            #skills img.language-logo {
+                width: 80px !important;
+                height: 80px !important;
+            }
+
+            #skills > div,
+            #skills > div + div {
+                gap: 2rem !important;
+            }
+
+            #passe-temps ul {
+                padding-left: 1rem;
+            }
+
+            /* Expérience - timeline plus compacte en mobile */
+            .timeline {
+                max-width: 100%;
+                padding: 0.5rem 0;
+            }
+
+            .timeline::before {
+                left: 16px;
+            }
+
+            .timeline-item {
+                padding-left: 3.25rem;
+                padding-right: 0.75rem;
+                width: 100%;
+                left: 0;
+                text-align: left;
+            }
+
+            .timeline-item.left,
+            .timeline-item.right {
+                left: 0;
+                text-align: left;
+            }
+
+            .timeline-item::before,
+            .timeline-item.left::before,
+            .timeline-item.right::before {
+                left: 12px;
+                right: auto;
+            }
+
+            .timeline-content {
+                padding: 0.9rem 1rem;
+            }
+
+            .timeline-content h3 {
+                font-size: 1rem;
+            }
+
+            .timeline-content p {
+                font-size: 0.95rem;
+            }
+
+            .shape.circle,
+            .shape.triangle {
+                display: none;
+            }
+        }
+
         #passe-temps ul {
             display: flex;
             flex-direction: column; /* Affiche les éléments en colonne */
