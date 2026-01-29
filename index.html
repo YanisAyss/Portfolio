@@ -285,6 +285,110 @@
             animation-delay: 0.8s;
         }
 
+        /* Timeline Expérience */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 2rem auto 0;
+            padding: 1rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: #e0e0e0;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 1rem 2rem;
+            box-sizing: border-box;
+        }
+
+        .timeline-item.left {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item.right {
+            left: 50%;
+            text-align: left;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 1.4rem;
+            width: 16px;
+            height: 16px;
+            background: #6c757d;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-item.left::before {
+            right: -10px;
+        }
+
+        .timeline-item.right::before {
+            left: -10px;
+        }
+
+        .timeline-content {
+            background: #f3f3f3;
+            padding: 1.2rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .timeline-content h3 {
+            margin: 0 0 0.4rem;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .timeline-content p {
+            margin: 0.2rem 0 0;
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .timeline-date {
+            display: inline-block;
+            margin-top: 0.6rem;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+                transform: none;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 3.5rem;
+                padding-right: 1rem;
+                text-align: left;
+                left: 0;
+            }
+
+            .timeline-item::before {
+                left: 12px;
+                right: auto;
+            }
+        }
+
         #passe-temps ul {
             display: flex;
             flex-direction: column; /* Affiche les éléments en colonne */
@@ -391,6 +495,10 @@
             </div>
         </div>
 
+        <div style="margin-top: 2rem; text-align: center;">
+            <a href="CVYanisAFKOUR.pdf" target="_blank" class="btn">Accéder au CV</a>
+        </div>
+
         <!-- Section Contactez-moi -->
         <h3 style="margin-top: 2rem; text-align: center;">Contactez-moi</h3>
         <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; margin-top: 1rem; background: #f9f9f9; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
@@ -418,13 +526,40 @@
     <div class="shape circle"></div>
 
     <div id="experience" class="tab-content">
-        <h2>Expérience Professionnelle</h2>
-        <ul style="list-style: none; padding: 0; font-size: 1.2rem; color: #555;">
-            <li class="experience-item" style="margin-bottom: 10px;">Stage 3e NEOTECH INFORMATIQUE (2020) à Nîmes</li>
-            <li class="experience-item" style="margin-bottom: 10px;">Lycée Dhuoda STI2D (septembre 2021 - juin 2024)</li>
-            <li class="experience-item" style="margin-bottom: 10px;">Bac mention bien</li>
-            <li class="experience-item">BTS SIO DBS en alternance chez DigitHall à Saint-Rémy-de-Provence</li>
-        </ul>
+        <h2>Expérience</h2>
+        <div class="timeline">
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <h3>Stage 3e - NEOTECH INFORMATIQUE</h3>
+                    <p>Stage d’observation à Nîmes.</p>
+                    <span class="timeline-date">2020</span>
+                </div>
+            </div>
+
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <h3>Lycée Dhuoda STI2D</h3>
+                    <p>Parcours STI2D.</p>
+                    <span class="timeline-date">Septembre 2021 – Juin 2024</span>
+                </div>
+            </div>
+
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <h3>Baccalauréat</h3>
+                    <p>Mention bien.</p>
+                    <span class="timeline-date">2024</span>
+                </div>
+            </div>
+
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <h3>BTS SIO DBS (alternance)</h3>
+                    <p>Alternance chez DigitHall à Saint-Rémy-de-Provence.</p>
+                    <span class="timeline-date">En cours</span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="skills" class="tab-content">
@@ -434,6 +569,13 @@
             <img src="images/php-logo.png" alt="PHP Logo" class="language-logo" style="width: 100px; height: 100px;">
             <img src="images/css-logo.png" alt="CSS Logo" class="language-logo" style="width: 100px; height: 100px;">
             <img src="images/javascript-logo.png" alt="JavaScript Logo" class="language-logo" style="width: 100px; height: 100px;">
+            <img src="images/python-logo.png" alt="Python Logo" class="language-logo" style="width: 100px; height: 100px;">
+        </div>
+
+        <h2 style="margin-top: 2.5rem;">Bases de données vues</h2>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 10rem; flex-wrap: wrap;">
+            <img src="images/sql-logo.png" alt="SQL Logo" class="language-logo" style="width: 100px; height: 100px;">
+            <img src="images/phpmyadmin-logo.png" alt="phpMyAdmin Logo" class="language-logo" style="width: 100px; height: 100px;">
         </div>
     </div>
 
@@ -473,13 +615,13 @@
                     <span style="font-size: 1.5rem;">🖥️</span> Compétences Techniques
                 </h3>
                 <ul style="list-style: none; padding: 0; margin: 1rem 0 0 0; color: #555; font-size: 1.1rem;">
-                    <li style="margin-bottom: 10px;">
+                    <li style="margin-bottom: 30px;">
                         <strong>Base de données :</strong> MySQL, SQL Server (création de tables, requêtes, jointures…)
                     </li>
-                    <li style="margin-bottom: 10px;">
+                    <li style="margin-bottom: 30px;">
                         <strong>Développement d’applications :</strong> Conception d'application sous Visual Studio Code
                     </li>
-                    <li style="margin-bottom: 10px;">
+                    <li style="margin-bottom: 30px;">
                         <strong>Outils et environnements :</strong> Visual Studio Code, XAMPP, PhpMyAdmin, Notepad++, SQL SERVER
                     </li>
                     <li>
@@ -494,10 +636,10 @@
                     <span style="font-size: 1.5rem;">🧠</span> Soft Skills
                 </h3>
                 <ul style="list-style: none; padding: 0; margin: 1rem 0 0 0; color: #555; font-size: 1.1rem;">
-                    <li style="margin-bottom: 10px;">Esprit d’analyse et de logique</li>
-                    <li style="margin-bottom: 10px;">Travail en équipe</li>
-                    <li style="margin-bottom: 10px;">Rigueur et autonomie</li>
-                    <li style="margin-bottom: 10px;">Capacité d’adaptation</li>
+                    <li style="margin-bottom: 30px;">Esprit d’analyse et de logique</li>
+                    <li style="margin-bottom: 30px;">Travail en équipe</li>
+                    <li style="margin-bottom: 30px;">Rigueur et autonomie</li>
+                    <li style="margin-bottom: 30px;">Capacité d’adaptation</li>
                     <li>Communication avec les clients/utilisateurs</li>
                 </ul>
             </div>
